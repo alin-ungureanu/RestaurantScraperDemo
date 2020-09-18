@@ -31,7 +31,8 @@ namespace WebScraper.Controllers
             {
                 Scraper.getInstance().setUrl(MenuUrl);
                 Scraper.getInstance().startScraping();
-
+                ViewData["ResultsTitle"] = "Scraping results";
+                ViewData["Results"] = "Hello World";
                 return View();
             }
             else
