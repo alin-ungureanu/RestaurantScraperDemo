@@ -26,7 +26,7 @@ namespace WebScraper
             url = null;
             //init chrome driver
             ChromeOptions options = new ChromeOptions();
-            options.AddArgument("--start-maximized");
+            //options.AddArgument("--start-maximized");
             driver = new ChromeDriver(options);
         }
 
@@ -99,9 +99,13 @@ namespace WebScraper
                 }
             }
 
-            
+
+            Console.WriteLine("Finished Scraping");
 
             printScrapedContents();
+
+            Console.WriteLine("Finished printing results");
+
 
             Thread.Sleep(10000);
             driver.Close();
@@ -143,7 +147,11 @@ namespace WebScraper
 
             scrapedContents.AddLast(data);
             //close the newly opened tab
-            action.KeyDown(Keys.Control).SendKeys("w").Perform();
+            action = new Actions(driver);
+            //driver.Actions().keyDown(protractor.Key.CONTROL).sendKeys('w').Perform();
+            action.KeyDown(Keys.Control).MoveToElement(foodItem).SendKeys("W").Perform();
+            Thread.Sleep(500);
+            driver.SwitchTo().Window(driver.WindowHandles[0]);
             Thread.Sleep(500);
         }
 
