@@ -32,7 +32,7 @@ namespace WebScraper.Controllers
                 Scraper.getInstance().setUrl(MenuUrl);
                 Scraper.getInstance().startScraping();
                 ViewData["ResultsTitle"] = "Scraping results";
-                ViewData["Results"] = "Hello World";
+                ViewData["Results"] = Scraper.getInstance().getScrapedContentInJSON();
                 return View();
             }
             else

@@ -53,8 +53,6 @@ D:\Workspace\_GITHUB_\CSharpSeleniumRestaurantScraperDemo\RestaurantScraperDemo\
 D:\Workspace\_GITHUB_\CSharpSeleniumRestaurantScraperDemo\RestaurantScraperDemo\WebScraper\WebScraper\obj\Debug\netcoreapp3.1\WebScraper.csprojAssemblyReference.cache
 D:\Workspace\_GITHUB_\CSharpSeleniumRestaurantScraperDemo\RestaurantScraperDemo\WebScraper\WebScraper\obj\Debug\netcoreapp3.1\WebScraper.AssemblyInfoInputs.cache
 D:\Workspace\_GITHUB_\CSharpSeleniumRestaurantScraperDemo\RestaurantScraperDemo\WebScraper\WebScraper\obj\Debug\netcoreapp3.1\WebScraper.AssemblyInfo.cs
-D:\Workspace\_GITHUB_\CSharpSeleniumRestaurantScraperDemo\RestaurantScraperDemo\WebScraper\WebScraper\obj\Debug\netcoreapp3.1\WebScraper.csproj.CoreCompileInputs.cache
-D:\Workspace\_GITHUB_\CSharpSeleniumRestaurantScraperDemo\RestaurantScraperDemo\WebScraper\WebScraper\obj\Debug\netcoreapp3.1\WebScraper.MvcApplicationPartsAssemblyInfo.cache
 D:\Workspace\_GITHUB_\CSharpSeleniumRestaurantScraperDemo\RestaurantScraperDemo\WebScraper\WebScraper\obj\Debug\netcoreapp3.1\WebScraper.RazorAssemblyInfo.cache
 D:\Workspace\_GITHUB_\CSharpSeleniumRestaurantScraperDemo\RestaurantScraperDemo\WebScraper\WebScraper\obj\Debug\netcoreapp3.1\WebScraper.RazorAssemblyInfo.cs
 D:\Workspace\_GITHUB_\CSharpSeleniumRestaurantScraperDemo\RestaurantScraperDemo\WebScraper\WebScraper\obj\Debug\netcoreapp3.1\WebScraper.TagHelpers.input.cache
@@ -76,3 +74,8 @@ D:\Workspace\_GITHUB_\CSharpSeleniumRestaurantScraperDemo\RestaurantScraperDemo\
 D:\Workspace\_GITHUB_\CSharpSeleniumRestaurantScraperDemo\RestaurantScraperDemo\WebScraper\WebScraper\obj\Debug\netcoreapp3.1\WebScraper.dll
 D:\Workspace\_GITHUB_\CSharpSeleniumRestaurantScraperDemo\RestaurantScraperDemo\WebScraper\WebScraper\obj\Debug\netcoreapp3.1\WebScraper.pdb
 D:\Workspace\_GITHUB_\CSharpSeleniumRestaurantScraperDemo\RestaurantScraperDemo\WebScraper\WebScraper\obj\Debug\netcoreapp3.1\WebScraper.genruntimeconfig.cache
+D:\Workspace\_GITHUB_\CSharpSeleniumRestaurantScraperDemo\RestaurantScraperDemo\WebScraper\WebScraper\bin\Debug\netcoreapp3.1\System.Net.Http.Formatting.dll
+D:\Workspace\_GITHUB_\CSharpSeleniumRestaurantScraperDemo\RestaurantScraperDemo\WebScraper\WebScraper\bin\Debug\netcoreapp3.1\WebApiContrib.Formatting.JavaScriptSerializer.dll
+D:\Workspace\_GITHUB_\CSharpSeleniumRestaurantScraperDemo\RestaurantScraperDemo\WebScraper\WebScraper\obj\Debug\netcoreapp3.1\WebScraper.csproj.CoreCompileInputs.cache
+D:\Workspace\_GITHUB_\CSharpSeleniumRestaurantScraperDemo\RestaurantScraperDemo\WebScraper\WebScraper\obj\Debug\netcoreapp3.1\WebScraper.MvcApplicationPartsAssemblyInfo.cache
+D:\Workspace\_GITHUB_\CSharpSeleniumRestaurantScraperDemo\RestaurantScraperDemo\WebScraper\WebScraper\bin\Debug\netcoreapp3.1\Json.Net.dll

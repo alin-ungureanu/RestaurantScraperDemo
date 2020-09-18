@@ -10,6 +10,7 @@ using System.Collections;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Interactions;
 using System.Text.RegularExpressions;
+using System.Text.Json;
 
 namespace WebScraper
 {
@@ -167,6 +168,21 @@ namespace WebScraper
             {
                 Console.WriteLine(pair.Key + " = " + pair.Value);
             }
+        }
+
+        public string getScrapedContentInJSON()
+        {
+
+
+            var uglyJson = Newtonsoft.Json.JsonConvert.SerializeObject(scrapedContents);
+            var options = new JsonSerializerOptions()
+            {
+                WriteIndented = true
+            };
+
+            var jsonElement = JsonSerializer.Deserialize<JsonElement>(uglyJson);
+
+            return JsonSerializer.Serialize(jsonElement, options);
         }
     }
 }

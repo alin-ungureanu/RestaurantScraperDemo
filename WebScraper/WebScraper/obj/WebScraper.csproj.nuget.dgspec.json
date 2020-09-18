@@ -38,6 +38,10 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "Json.Net": {
+              "target": "Package",
+              "version": "[1.0.23, )"
+            },
             "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
               "target": "Package",
               "version": "[1.10.9, )"
@@ -45,6 +49,10 @@
             "Selenium.WebDriver": {
               "target": "Package",
               "version": "[3.141.0, )"
+            },
+            "WebApiContrib.Formatting.JavaScriptSerializer": {
+              "target": "Package",
+              "version": "[0.9.4, )"
             }
           },
           "imports": [
