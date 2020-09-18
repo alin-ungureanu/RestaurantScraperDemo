@@ -24,10 +24,20 @@ namespace WebScraper.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(String url)
+        public IActionResult Index(String MenuUrl)
         {
-            
-            return View();
+            Console.WriteLine("Method is " + HttpContext.Request.Method);
+            if (HttpContext.Request.Method == "POST")
+            {
+                Scraper.getInstance().setUrl(MenuUrl);
+                Scraper.getInstance().startScraping();
+
+                return View();
+            }
+            else
+            {
+                return View();
+            }
         }
 
         public IActionResult Privacy()
