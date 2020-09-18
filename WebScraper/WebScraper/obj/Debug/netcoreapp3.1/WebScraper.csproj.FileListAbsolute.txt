@@ -76,6 +76,10 @@ D:\Workspace\_GITHUB_\CSharpSeleniumRestaurantScraperDemo\RestaurantScraperDemo\
 D:\Workspace\_GITHUB_\CSharpSeleniumRestaurantScraperDemo\RestaurantScraperDemo\WebScraper\WebScraper\obj\Debug\netcoreapp3.1\WebScraper.genruntimeconfig.cache
 D:\Workspace\_GITHUB_\CSharpSeleniumRestaurantScraperDemo\RestaurantScraperDemo\WebScraper\WebScraper\bin\Debug\netcoreapp3.1\System.Net.Http.Formatting.dll
 D:\Workspace\_GITHUB_\CSharpSeleniumRestaurantScraperDemo\RestaurantScraperDemo\WebScraper\WebScraper\bin\Debug\netcoreapp3.1\WebApiContrib.Formatting.JavaScriptSerializer.dll
+D:\Workspace\_GITHUB_\CSharpSeleniumRestaurantScraperDemo\RestaurantScraperDemo\WebScraper\WebScraper\bin\Debug\netcoreapp3.1\Json.Net.dll
+D:\Workspace\_GITHUB_\CSharpSeleniumRestaurantScraperDemo\RestaurantScraperDemo\WebScraper\WebScraper\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libsqlite3.so
+D:\Workspace\_GITHUB_\CSharpSeleniumRestaurantScraperDemo\RestaurantScraperDemo\WebScraper\WebScraper\bin\Debug\netcoreapp3.1\runtimes\osx-x64\native\libsqlite3.dylib
+D:\Workspace\_GITHUB_\CSharpSeleniumRestaurantScraperDemo\RestaurantScraperDemo\WebScraper\WebScraper\bin\Debug\netcoreapp3.1\runtimes\win7-x64\native\sqlite3.dll
+D:\Workspace\_GITHUB_\CSharpSeleniumRestaurantScraperDemo\RestaurantScraperDemo\WebScraper\WebScraper\bin\Debug\netcoreapp3.1\runtimes\win7-x86\native\sqlite3.dll
 D:\Workspace\_GITHUB_\CSharpSeleniumRestaurantScraperDemo\RestaurantScraperDemo\WebScraper\WebScraper\obj\Debug\netcoreapp3.1\WebScraper.csproj.CoreCompileInputs.cache
 D:\Workspace\_GITHUB_\CSharpSeleniumRestaurantScraperDemo\RestaurantScraperDemo\WebScraper\WebScraper\obj\Debug\netcoreapp3.1\WebScraper.MvcApplicationPartsAssemblyInfo.cache
-D:\Workspace\_GITHUB_\CSharpSeleniumRestaurantScraperDemo\RestaurantScraperDemo\WebScraper\WebScraper\bin\Debug\netcoreapp3.1\Json.Net.dll

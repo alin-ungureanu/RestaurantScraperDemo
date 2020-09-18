@@ -6,12 +6,11 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Collections;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Interactions;
 using System.Text.RegularExpressions;
 using System.Text.Json;
-
+using Microsoft.Data.Sqlite;
 namespace WebScraper
 {
     public class Scraper
@@ -21,12 +20,16 @@ namespace WebScraper
         private IWebDriver driver;
 
         private LinkedList<Dictionary<String, String>> scrapedContents;
+
+        public object ApplicationData { get; private set; }
+
         private Scraper()
         {
             scrapedContents = new LinkedList<Dictionary<String, String>>();
             url = null;
             //init chrome driver
             ChromeOptions options = new ChromeOptions();
+            //for full screen, uncomment the following line
             //options.AddArgument("--start-maximized");
             driver = new ChromeDriver(options);
         }
@@ -44,10 +47,10 @@ namespace WebScraper
 
         public void setUrl(String url)
         {
-            this.url = url;//https://www.pure.co.uk/menus/breakfast/
+            this.url = url;// e.g. https://www.pure.co.uk/menus/breakfast/
         }
 
-        public async void startScraping()
+        public void startScraping()
         {
             String menuTitle = "";
             String menuSectionTitle = "";
@@ -92,7 +95,7 @@ namespace WebScraper
                         Console.WriteLine("Scraping item " + i + " in a new tab");
                         dishName = food.FindElement(By.TagName("h3")).Text;
                         dishName = dishName.Substring(dishName.IndexOf('\n') + 1);
-                        //var link = food.FindElement(By.TagName("a"));
+
                         parseItem(food, menuTitle, menuSectionTitle, menuDescription, dishName);
                     }
 
@@ -112,7 +115,6 @@ namespace WebScraper
 
         private void parseItem(IWebElement webElement, String menuTitle, String menuSectionTitle, String menuDescription, String dishName)
         {
-            //webElement.SendKeys(Keys.Control + "t");
 
             Dictionary<String, String> data = new Dictionary<String, String>();
 
@@ -183,6 +185,60 @@ namespace WebScraper
             var jsonElement = JsonSerializer.Deserialize<JsonElement>(uglyJson);
 
             return JsonSerializer.Serialize(jsonElement, options);
+        }
+
+        public void saveToDB()
+        {
+            using (var db = new SqliteConnection("Data Source=hello.db"))
+            {
+                db.Open();
+
+                var cmd = db.CreateCommand();
+                //uncomment this to create a new table
+                /**/
+                cmd.CommandText = "DROP TABLE IF EXISTS foods";
+                cmd.ExecuteReader();
+
+                cmd.CommandText = @"CREATE TABLE foods(id INTEGER PRIMARY KEY,
+                        MenuTitle TEXT, MenuDescription TEXT, MenuSectionTitle TEXT, DishName TEXT, DishDescription TEXT)";
+                cmd.ExecuteReader();
+                /*
+                //for test
+                Dictionary<String, String> data = new Dictionary<String, String>();
+                data["MenuTitle"] = "menuTitle";
+                data["MenuDescription"] = "menuDescription";
+                data["MenuSectionTitle"] = "menuSectionTitle";
+                data["DishName"] = "dishName";;
+                data["DishDescription"] = "dishDescription";
+                /**/
+                foreach (Dictionary<String, String> data in scrapedContents)
+                {
+                    cmd.CommandText = "INSERT INTO foods(MenuTitle, MenuDescription, MenuSectionTitle, DishName, DishDescription)" +
+                        "   VALUES(@menuTitle, @menuDescription, @menuSectionTitle, @dishName, @dishDescription)";
+
+                    cmd.Parameters.AddWithValue("@menuTitle", data["MenuTitle"]);
+                    cmd.Parameters.AddWithValue("@menuDescription", data["MenuDescription"]);
+                    cmd.Parameters.AddWithValue("@menuSectionTitle", data["MenuSectionTitle"]);
+                    cmd.Parameters.AddWithValue("@dishName", data["DishName"]);
+                    cmd.Parameters.AddWithValue("@dishDescription", data["DishDescription"]);
+                    cmd.Prepare();
+                    cmd.ExecuteReader();
+                }
+                /*
+                cmd.CommandText = "INSERT INTO foods(MenuTitle, MenuDescription, MenuSectionTitle, DishName, DishDescription)" +
+                    "   VALUES(@menuTitle, @menuDescription, @menuSectionTitle, @dishName, @dishDescription)";
+
+                cmd.Parameters.AddWithValue("@menuTitle", data["MenuTitle"]);
+                cmd.Parameters.AddWithValue("@menuDescription", data["MenuDescription"]);
+                cmd.Parameters.AddWithValue("@menuSectionTitle", data["MenuSectionTitle"]);
+                cmd.Parameters.AddWithValue("@dishName", data["DishName"]);
+                cmd.Parameters.AddWithValue("@dishDescription", data["DishDescription"]);
+                cmd.Prepare();
+                cmd.ExecuteReader();
+                */
+
+                db.Close();
+            }
         }
     }
 }
