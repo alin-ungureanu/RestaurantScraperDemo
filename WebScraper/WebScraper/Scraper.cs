@@ -94,7 +94,6 @@ namespace WebScraper
                         //var link = food.FindElement(By.TagName("a"));
                         parseItem(food, menuTitle, menuSectionTitle, menuDescription, dishName);
                     }
-                    
 
                 }
             }
@@ -106,8 +105,6 @@ namespace WebScraper
 
             Console.WriteLine("Finished printing results");
 
-
-            Thread.Sleep(10000);
             driver.Close();
         }
 
@@ -148,13 +145,10 @@ namespace WebScraper
 
             scrapedContents.AddLast(data);
             //close the newly opened tab
-            action = new Actions(driver);
-            //driver.Actions().keyDown(protractor.Key.CONTROL).sendKeys('w').Perform();
-            //action.KeyDown(Keys.Control).MoveToElement(foodItem).SendKeys("W").Perform();
             Thread.Sleep(500);
             driver.Close();
             driver.SwitchTo().Window(firstTab);
-            Thread.Sleep(500);
+            Thread.Sleep(200);
         }
 
 
