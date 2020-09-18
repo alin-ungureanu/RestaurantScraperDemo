@@ -75,11 +75,11 @@ namespace WebScraper
             //replace html tags and quotes from the menuDescription
             menuDescription = Regex.Replace(menuDescription, "<br>", " ");
             menuDescription = Regex.Replace(menuDescription, "\"", String.Empty);
-            //skipping the first item, which is unrelated
+            //skipping the first 2 items, which are not food items
             for (int i = 2; i < items.Count; ++i)
             {
                 var item = items[i];
-                Console.WriteLine("current item " + i);
+                Console.WriteLine("current selection " + i);
                 Console.WriteLine(item.GetAttribute("class"));
                 if (item.GetAttribute("class") == "menu-title")
                 {
@@ -90,13 +90,12 @@ namespace WebScraper
                     var foods = item.FindElements(By.ClassName("menu-item"));
                     foreach(var food in foods)
                     {
-                        Console.WriteLine("Scraping item " + i + " in a new tab");
-                        dishName = food.FindElement(By.TagName("h3")).Text;
+                        dishName = food.FindElement(By.TagName("h3")).Text;                        
                         dishName = dishName.Substring(dishName.IndexOf('\n') + 1);
+                        Console.WriteLine("Scraping item " + dishName + " in a new tab");
 
                         parseItem(food, menuTitle, menuSectionTitle, menuDescription, dishName);
                     }
-
                 }
             }
 
