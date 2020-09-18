@@ -51,6 +51,8 @@ namespace WebScraper
             String menuTitle = "";
             String menuSectionTitle = "";
             String menuDescription = "";
+            String dishName = "";
+
             driver.Navigate().GoToUrl(url);
 
             //wait for the page to reload
@@ -75,15 +77,25 @@ namespace WebScraper
             for (int i = 2; i < items.Count; ++i)
             {
                 var item = items[i];
-                Console.WriteLine("atribute class = " + item.GetAttribute("class"));
+                Console.WriteLine("current item " + i);
+                Console.WriteLine(item.GetAttribute("class"));
                 if (item.GetAttribute("class") == "menu-title")
                 {
                     menuSectionTitle = item.FindElement(By.TagName("span")).Text;
                 }
                 else if (item.GetAttribute("class") == "collapse in")
                 {
-                    var link = item.FindElement(By.TagName("a"));
-                    parseItem(link, menuTitle, menuSectionTitle, menuDescription);
+                    var foods = item.FindElements(By.ClassName("menu-item"));
+                    foreach(var food in foods)
+                    {
+                        Console.WriteLine("Scraping item " + i + " in a new tab");
+                        dishName = food.FindElement(By.TagName("h3")).Text;
+                        dishName = dishName.Substring(dishName.IndexOf('\n') + 1);
+                        //var link = food.FindElement(By.TagName("a"));
+                        parseItem(food, menuTitle, menuSectionTitle, menuDescription, dishName);
+                    }
+                    
+
                 }
             }
 
@@ -96,7 +108,7 @@ namespace WebScraper
         }
 
 
-        private void parseItem(IWebElement webElement, String menuTitle, String menuSectionTitle, String menuDescription)
+        private void parseItem(IWebElement webElement, String menuTitle, String menuSectionTitle, String menuDescription, String dishName)
         {
             //webElement.SendKeys(Keys.Control + "t");
 
@@ -106,19 +118,23 @@ namespace WebScraper
             Actions action = new Actions(driver);
             action.KeyDown(Keys.Control).MoveToElement(webElement).Click().Perform();
             Thread.Sleep(1000);
-            action.KeyUp(Keys.Control);
             //move focus to new tab
-            driver.SwitchTo().Window(driver.WindowHandles[1]);
-
-            //webElement.Click();
+            if (driver.WindowHandles.Count > 1)
+            {
+                driver.SwitchTo().Window(driver.WindowHandles[1]);
+            }
+            else
+            {
+                Console.WriteLine("Driver does not have second window");
+            }
             Thread.Sleep(500);
             var foodItem = driver.FindElement(By.ClassName("menu-item-details"));
 
             data["MenuTitle"] = menuTitle;
             data["MenuDescription"] = menuDescription;
             data["MenuSectionTitle"] = menuSectionTitle;
-           
-            data["DishName"] = foodItem.FindElement(By.TagName("h2")).Text;
+
+            data["DishName"] = dishName;
             var dishDescription = foodItem.FindElements(By.TagName("p"));
             data["DishDescription"] = dishDescription[1].Text;
 
@@ -126,10 +142,9 @@ namespace WebScraper
             printItem(data);
 
             scrapedContents.AddLast(data);
-
             //close the newly opened tab
-            driver.Close();
-            driver.SwitchTo().Window(driver.WindowHandles[0]);
+            action.KeyDown(Keys.Control).SendKeys("w").Perform();
+            Thread.Sleep(500);
         }
 
 
