@@ -104,11 +104,13 @@ namespace WebScraper
 
             //open link in new tab
             Actions action = new Actions(driver);
-            //action.KeyDown(Keys.Control).MoveToElement(webElement).Click().Perform();
+            action.KeyDown(Keys.Control).MoveToElement(webElement).Click().Perform();
+            Thread.Sleep(1000);
+            action.KeyUp(Keys.Control);
             //move focus to new tab
-            //driver.SwitchTo().Window(driver.WindowHandles[1]);
+            driver.SwitchTo().Window(driver.WindowHandles[1]);
 
-            webElement.Click();
+            //webElement.Click();
             Thread.Sleep(500);
             var foodItem = driver.FindElement(By.ClassName("menu-item-details"));
 
