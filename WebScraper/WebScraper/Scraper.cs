@@ -10,6 +10,7 @@ using System.Collections;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Interactions;
 using System.Text.RegularExpressions;
+using Microsoft.AspNetCore.Builder;
 
 namespace WebScraper
 {
@@ -119,8 +120,9 @@ namespace WebScraper
             Dictionary<String, String> data = new Dictionary<String, String>();
 
             //open link in new tab
-            Actions action = new Actions(driver);
-            action.KeyDown(Keys.Control).MoveToElement(webElement).Click().Perform();
+            //Actions action = new Actions(driver);
+            //action.KeyDown(Keys.Control).MoveToElement(webElement).Click().Perform();
+            webElement.Click();
             Thread.Sleep(1000);
             //move focus to new tab
             if (driver.WindowHandles.Count > 1)
@@ -147,12 +149,14 @@ namespace WebScraper
 
             scrapedContents.AddLast(data);
             //close the newly opened tab
-            action = new Actions(driver);
+            /*action = new Actions(driver);
             //driver.Actions().keyDown(protractor.Key.CONTROL).sendKeys('w').Perform();
             action.KeyDown(Keys.Control).MoveToElement(foodItem).SendKeys("W").Perform();
             Thread.Sleep(500);
-            driver.SwitchTo().Window(driver.WindowHandles[0]);
-            Thread.Sleep(500);
+            driver.SwitchTo().Window(driver.WindowHandles[0]);*/
+
+            driver.Navigate().Back();
+            Thread.Sleep(1000);
         }
 
 
