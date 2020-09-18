@@ -31,6 +31,7 @@ namespace WebScraper.Controllers
             {
                 Scraper.getInstance().setUrl(MenuUrl);
                 Scraper.getInstance().startScraping();
+                Scraper.getInstance().saveToDB();
                 ViewData["ResultsTitle"] = "Scraping results";
                 ViewData["Results"] = Scraper.getInstance().getScrapedContentInJSON();
                 return View();

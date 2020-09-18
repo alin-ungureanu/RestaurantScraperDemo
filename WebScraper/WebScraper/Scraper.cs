@@ -1,16 +1,14 @@
 ﻿using OpenQA.Selenium;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Interactions;
 using System.Text.RegularExpressions;
 using System.Text.Json;
-using Microsoft.Data.Sqlite;
+using System.Data.SQLite;
+
 namespace WebScraper
 {
     public class Scraper
@@ -189,28 +187,22 @@ namespace WebScraper
 
         public void saveToDB()
         {
-            using (var db = new SqliteConnection("Data Source=hello.db"))
+            string dbPath = Path.Combine(Environment.CurrentDirectory, "scraper.db");
+            string connString = string.Format("Data Source={0}", dbPath);
+            using (var db = new SQLiteConnection(connString))
             {
                 db.Open();
 
                 var cmd = db.CreateCommand();
-                //uncomment this to create a new table
-                /**/
+
                 cmd.CommandText = "DROP TABLE IF EXISTS foods";
-                cmd.ExecuteReader();
+                cmd.ExecuteNonQuery();
 
                 cmd.CommandText = @"CREATE TABLE foods(id INTEGER PRIMARY KEY,
                         MenuTitle TEXT, MenuDescription TEXT, MenuSectionTitle TEXT, DishName TEXT, DishDescription TEXT)";
-                cmd.ExecuteReader();
-                /*
-                //for test
-                Dictionary<String, String> data = new Dictionary<String, String>();
-                data["MenuTitle"] = "menuTitle";
-                data["MenuDescription"] = "menuDescription";
-                data["MenuSectionTitle"] = "menuSectionTitle";
-                data["DishName"] = "dishName";;
-                data["DishDescription"] = "dishDescription";
-                /**/
+                cmd.ExecuteNonQuery();
+                
+
                 foreach (Dictionary<String, String> data in scrapedContents)
                 {
                     cmd.CommandText = "INSERT INTO foods(MenuTitle, MenuDescription, MenuSectionTitle, DishName, DishDescription)" +
@@ -222,20 +214,8 @@ namespace WebScraper
                     cmd.Parameters.AddWithValue("@dishName", data["DishName"]);
                     cmd.Parameters.AddWithValue("@dishDescription", data["DishDescription"]);
                     cmd.Prepare();
-                    cmd.ExecuteReader();
+                    cmd.ExecuteNonQuery();
                 }
-                /*
-                cmd.CommandText = "INSERT INTO foods(MenuTitle, MenuDescription, MenuSectionTitle, DishName, DishDescription)" +
-                    "   VALUES(@menuTitle, @menuDescription, @menuSectionTitle, @dishName, @dishDescription)";
-
-                cmd.Parameters.AddWithValue("@menuTitle", data["MenuTitle"]);
-                cmd.Parameters.AddWithValue("@menuDescription", data["MenuDescription"]);
-                cmd.Parameters.AddWithValue("@menuSectionTitle", data["MenuSectionTitle"]);
-                cmd.Parameters.AddWithValue("@dishName", data["DishName"]);
-                cmd.Parameters.AddWithValue("@dishDescription", data["DishDescription"]);
-                cmd.Prepare();
-                cmd.ExecuteReader();
-                */
 
                 db.Close();
             }
