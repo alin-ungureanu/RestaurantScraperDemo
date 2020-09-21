@@ -25,6 +25,7 @@ Usage
 =====
 The web app starts on http://localhost:8080
 There is an input text which requires a restaurant menu URL via a POST request.
-The Current scraper is a demo and works only with the following link: https://www.pure.co.uk/menus/breakfast/
+The current scraper is a demo and works only with the following link: https://www.pure.co.uk/menus/breakfast/
+A video demo of the scraper can be found here: https://drive.google.com/file/d/1PEqRZVcMhZ9wh_3tuKvXSYdWSmF3hSFw/view?usp=sharing
 
 
